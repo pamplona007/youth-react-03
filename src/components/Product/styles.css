@@ -1,0 +1,25 @@
+.product {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.product > img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.product > .colors {
+    display: flex;
+    gap: 5px;
+}
+
+.product > .colors > .color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
