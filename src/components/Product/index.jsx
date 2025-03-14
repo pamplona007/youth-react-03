@@ -1,9 +1,14 @@
+import { useState } from 'react'
 import './styles.css'
+import { Link } from 'react-router';
 
-const Product = ({ image, title, price, colors }) => {
+const ProductCard = ({ id, images, title, price, colors }) => {
+    const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+    const selectedImage = images[selectedColorIndex];
+
     return (
-        <div className="product">
-            <img src={image} alt="product image" />
+        <Link to={`/${id}`} className="product">
+            <img src={selectedImage} alt={`image ${selectedColorIndex + 1}`} />
             <div className="title">
                 {title}
             </div>
@@ -14,17 +19,24 @@ const Product = ({ image, title, price, colors }) => {
                 })}
             </div>
             <div className="colors">
-                {colors?.map((color) => (
+                {colors?.map((color, index) => (
                     <div 
                         className="color"
                         style={{
-                            backgroundColor: color
+                            backgroundColor: color,
+                            outlineColor: selectedColorIndex === index 
+                                ? 'red'
+                                : 'transparent',
+                            outlineWidth: '1px',
+                            outlineStyle: 'solid',
+                            outlineOffset: '2px' 
                         }}
+                        onMouseEnter={() => setSelectedColorIndex(index)}
                     ></div>
                 ))}
             </div>
-        </div>
+        </Link>
     )
 } 
 
-export default Product;
+export default ProductCard;
